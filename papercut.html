@@ -3,7 +3,47 @@
 </head>
 
 <body>
-  {{> hello}}
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container">
+                <ul class="nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="hero-unit">
+        {{> hello}}
+    </div>
+    <div class="row">
+        <div class="span4">
+            <h4 class="muted text-center">The Problem</h4>
+            <p>It is time consuming to opt out of all the junk mail we receive.</p>
+            <p>You are receiving catalogs and mail offers you never wanted. It’s hard to figure out how to opt out.</p>
+            <p>You are receiving local news papers that you will never read.</p>
+            <p>We make it easy.</p>
+            <a href="#" class="btn btn-success">You Are Not Alone</a>
+        </div>
+        <div class="span4">
+            <h4 class="muted text-center">The Solution</h4>
+            <p>We contact and follow up with the paper and mailers on your behalf.</p>
+            <p>You pay nothing to stop the delivery of local free papers.</p>
+            <p>You pay the cost of a stamp to stop each mailer.</p>
+            <p>Currently only available in Califoria.</p>
+            <a href="#" class="btn btn-success">The Details</a>
+        </div>
+        <div class="span4">
+            <h4 class="muted text-center">The Benefit</h4>
+            <p>Your get your time back.</p>
+            <p>We create public score cards on each local paper and mailer.</p>
+            <p>You're saving trees. You're helping the environment.</p>
+            <a href="#" class="btn btn-success">More Benefits</a>
+            <p>
+        </div>
+    </div>
+    <div class="navbar navbar-fixed-bottom"><p>&copy; Copyright 2014 Dewolf Montgomery Campbell</p></div>
 </body>
 
 <template name="hello">
