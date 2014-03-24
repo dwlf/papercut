@@ -1,7 +1,7 @@
 papercut
 ========
 
-## Style
+## Source Style
 
 ### JavaScript Style
 * Use soft-tabs (spaces) with a two space indent.
