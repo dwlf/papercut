@@ -1,0 +1,1 @@
+Newspapers = new Meteor.Collection('newspapers');
