@@ -10,3 +10,4 @@ accounts-facebook
 accounts-ui
 bootstrap
 service-configuration
+iron-router
