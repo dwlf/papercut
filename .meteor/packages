@@ -11,3 +11,4 @@ accounts-ui
 bootstrap
 service-configuration
 iron-router
+spin
