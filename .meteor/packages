@@ -5,11 +5,9 @@
 
 standard-app-packages
 insecure
-accounts-facebook
-accounts-ui
-bootstrap
 service-configuration
 iron-router
 spin
-accounts-ui-bootstrap-dropdown
 accounts-password
+accounts-ui-bootstrap-dropdown
+bootstrap
