@@ -1,12 +1,7 @@
 <template name="newspaperPage">
     <div class="newspaper">
         <div class="newspaper-content">
-            <h2>{{name}}</h2>
-            <div>{{echoOrEditMe 'url' url}}</div>
-            <div>Areas Served: {{json postalCodesServed}}</div>
-            <div>{{echoOrEditMe 'phone' contactPhone}}</div>
-            <div>{{echoOrEditMe 'email' contactEmail}}</div>
-            <div>{{json address}}</div>
+            {{{htmlFullNewspaper}}}
         </div>
     </div>
 </template>
