@@ -1,7 +1,11 @@
 <template name="newspaperPage">
-    <div class="newspaper">
-        <div class="newspaper-content">
-            {{{htmlFullNewspaper}}}
+    {{#if this}}
+        <div class="newspaper">
+            <div class="newspaper-content">
+                {{{htmlFullNewspaper}}}
+            </div>
         </div>
-    </div>
+    {{else}}
+        <p>We can't find that newspaper. Would you <a href="{{pathFor 'newspaperAdd'}}" >add it?</a></p>
+    {{/if}}
 </template>
