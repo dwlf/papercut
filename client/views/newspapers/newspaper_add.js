@@ -11,7 +11,11 @@ Template.newspaperAdd.events({
       address: $(e.target).find('[name=address]').val()
     }
 
-    newspaper._id = Newspapers.insert(newspaper);
-    Router.go('newspaperPage', newspaper);
+    if (Newspapers.findOne({name: newspaper.name, postalCodesServed: newspaper.postalCodesServed})) {
+
+    } else {
+      newspaper._id = Newspapers.insert(newspaper);
+      Router.go('newspaperPage', newspaper);
+    }
   }
 });
