@@ -1,7 +1,6 @@
 Template.newspaperPage.helpers({
   newspaperExists: function() {
     var exists = false;
-    console.log( JSON.stringify(this) );
     if ( this.findOne() ) {
       exists = true;
     }
@@ -9,7 +8,7 @@ Template.newspaperPage.helpers({
   }
 });
 
-Template.newspaperPage.htmlFullNewspaper = function() {
+Template.newspaperPage.htmlFullNewspaper = function () {
   var html = '';
   for (key in this) {
     if (key === '_id') {
@@ -23,14 +22,11 @@ Template.newspaperPage.htmlFullNewspaper = function() {
           a.href = this[key];
           html = html + '<a href="' + this[key] + '">' + a.hostname + a.pathname + '</a>';
           break;
-        case 'address':
-          html = html + JSON.stringify(this[key]);
-          break;
         default:
           html = html + key + ': ' + this[key];
       }
     } else {
-      html = html + 'Add ' + key;
+      html = html + 'ADD ' + key;
     }
     html = html + '</div>';
   }

@@ -5,40 +5,19 @@ if (Newspapers.find().count() === 0) {
     postalCodesServed: ['90909'],
     contactPhone: '555-555-5555',
     contactEmail: 'tip@example.com',
-    address: {
-      streetAddress: '359 Murphy Avenue',
-      city: 'Gotham',
-      state: 'Gotham State',
-      postalCode: '90909',
-      country: 'USA'
-    }
+    streetAddress: '359 Murphy Avenue',
+    city: 'Gotham',
+    province: 'Gotham State',
+    postalCode: '90909'
   });
   Newspapers.insert({
     name: 'Daily Bugle',
     url: 'http://thedailybugle.tumblr.com/',
-    postalCodesServed: ['90909','89412'],
-    contactPhone: '',
-    contactEmail: '',
-    address: {
-      streetAddress: '',
-      city: '',
-      state: '',
-      postalCode: '',
-      country: ''
-    }
+    postalCodesServed: ['90909','89412']
   });
   Newspapers.insert({
     name: 'Daily Planet',
     url: 'http://en.wikipedia.org/wiki/Daily_Planet',
-    postalCodesServed: ['94501','89412'],
-    contactPhone: '',
-    contactEmail: '',
-    address: {
-      streetAddress: '',
-      city: '',
-      state: '',
-      postalCode: '',
-      country: ''
-    }
+    postalCodesServed: ['94501','89412']
   });
 }

@@ -5,17 +5,21 @@ Template.newspaperAdd.events({
     var newspaper = {
       name: $(e.target).find('[name=name]').val(),
       url: $(e.target).find('[name=url]').val(),
-      postalCodesServed: new Array($(e.target).find('[name=postalcode]').val()),
+      herPostalCode: $(e.target).find('[name=yourpostalcode]').val(),
       contactPhone: $(e.target).find('[name=phone]').val(),
       contactEmail: $(e.target).find('[name=email]').val(),
-      address: $(e.target).find('[name=address]').val()
+      streetAddress: $(e.target).find('[name=streetaddress]').val(),
+      city: $(e.target).find('[name=streetaddress]').val(),
+      province: $(e.target).find('[name=streetaddress]').val(),
+      postalCode: $(e.target).find('[name=postalcode]').val(),
     }
 
-    if (Newspapers.findOne({name: newspaper.name, postalCodesServed: newspaper.postalCodesServed})) {
-
-    } else {
-      newspaper._id = Newspapers.insert(newspaper);
-      Router.go('newspaperPage', newspaper);
-    }
+    Meteor.call('addNewspaper', newspaper, function (error, id) {
+      if (error) {
+        return alert(error.reason);
+      } else {
+        Router.go('newspaperPage', {_id: id});
+      }
+    });
   }
 });
