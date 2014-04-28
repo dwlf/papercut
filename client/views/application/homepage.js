@@ -1,10 +1,18 @@
 Session.setDefault('yourPostalCode', '');
 Session.setDefault('noNewspapersFound', null);
 
+Template.homepage.rendered = function () {
+  var postalCodeSearchForm = $('#postalcode_search_form');
+  postalCodeSearchForm.parsley();
+  postalCodeSearchForm.parsley('addItem', '#postal_code');
+};
+
 Template.homepage.events({
   'submit form': function (e) {
     e.preventDefault();
-    Session.set('yourPostalCode', $(e.target).find('[name=yourpostalcode]').val());
+    if( $('#postalcode_search_form').parsley('validate').validationResult ) {
+      Session.set('yourPostalCode', $(e.target).find('[name=yourpostalcode]').val());
+    }
   }
 });
 

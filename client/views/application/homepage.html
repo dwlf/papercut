@@ -2,11 +2,16 @@
   {{#unless searchedAndNoPapersFound}}
     <div>1. Save a tree and stop receiving the free local paper that you never read.<br/>
          What is your zip code?</div>
-    <form class="form-search">
-    <div class="input-append">
-      <input type="text" class="search-query" name="yourpostalcode" placeholder="Zip Code">
+    <form class="form-search" id="postalcode_search_form">
+      {{!-- TODO: when I added parsley.js validation it caused the appended button to go to the next line
+        Revisit once upgraded to most recent bootstrap.
+      --}}
+      <input type="text" class="search-query" name="yourpostalcode" placeholder="Zip Code"
+        id="postal_code" data-parsley-type="digits" data-parsley-length="[5, 5]"
+        data-parsley-type-message="Only zip codes of five digits are currently supported."
+        data-parsley-length-message="Only zip codes of five digits are currently supported."
+        autofocus />
       <button type="submit" class="btn"><i class="icon-search"></i></button>
-    </div>
     </form>
     {{#if newspapersFound.count}}
       <div>
