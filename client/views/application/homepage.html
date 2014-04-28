@@ -1,14 +1,29 @@
 <template name="homepage">
-    <div>Save a tree and stop receiving the free local paper that you never read.</div>
+  {{#unless searchedAndNoPapersFound}}
+    <div>1. Save a tree and stop receiving the free local paper that you never read.<br/>
+         What is your zip code?</div>
     <form class="form-search">
-        <div class="input-append">
-            <input type="text" class="search-query" name="yourpostalcode" placeholder="What is your zip code?">
-            <button type="submit" class="btn"><i class="icon-search"></i></button>
-        </div>
-    </form>
-    <div>
-      {{#each newspapersFound}}
-        {{> newspaperItem}}
-      {{/each}}
+    <div class="input-append">
+      <input type="text" class="search-query" name="yourpostalcode" placeholder="Zip Code">
+      <button type="submit" class="btn"><i class="icon-search"></i></button>
     </div>
+    </form>
+    {{#if newspapersFound.count}}
+      <div>
+        {{#each newspapersFound}}
+          {{> newspaperItem}}
+        {{/each}}
+      </div>
+    {{/if}}
+  {{else}}
+    <div>2. No one in {{session 'yourPostalCode'}} has added a free newspaper yet.<br />
+         What is the name of the newspaper?
+    </div>
+    <form class="form-search">
+      <div class="input-append">
+        <input type="text" class="search-query" name="papername" placeholder="Newspaper name?">
+        <button type="submit" class="btn"><i class="icon-search"></i></button>
+      </div>
+    </form>
+  {{/unless}}
 </template>

@@ -1,4 +1,5 @@
 Session.setDefault('yourPostalCode', '');
+Session.setDefault('noNewspapersFound', null);
 
 Template.homepage.events({
   'submit form': function (e) {
@@ -9,9 +10,19 @@ Template.homepage.events({
 
 Template.homepage.helpers({
   newspapersFound: function () {
-    postalCode = Session.get('yourPostalCode');
+    postalCode = Session.get('yourPostalCode'),
+      cursor = null;
     if ( postalCode ) {
-      return Newspapers.find({postalCodesServed: postalCode});
+      cursor = Newspapers.find({postalCodesServed: postalCode});
+      if (cursor.count() === 0) {
+        Session.set('noNewspapersFound', true);
+      } else {
+        Session.set('noNewspapersFound', false);
+      }
+    } else {
+      Session.set('noNewspapersFound', null);
     }
-  }
+    return cursor;
+  },
+  searchedAndNoPapersFound: function () { return Session.get('noNewspapersFound'); }
 });
