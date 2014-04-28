@@ -1,0 +1,14 @@
+<template name="homepage">
+    <div>Save a tree and stop receiving the free local paper that you never read.</div>
+    <form class="form-search">
+        <div class="input-append">
+            <input type="text" class="search-query" name="yourpostalcode" placeholder="What is your zip code?">
+            <button type="submit" class="btn"><i class="icon-search"></i></button>
+        </div>
+    </form>
+    <div>
+      {{#each newspapersFound}}
+        {{> newspaperItem}}
+      {{/each}}
+    </div>
+</template>
