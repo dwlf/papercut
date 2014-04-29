@@ -31,8 +31,8 @@
   <form class="form-search" id="postalcode_search_form">
     <input type="text" class="search-query" name="yourpostalcode" placeholder="Zip Code" tabindex="1"
       id="postal_code" data-parsley-type="digits" data-parsley-length="[5, 5]"
-      data-parsley-type-message="Only zip codes of five digits are currently supported."
-      data-parsley-length-message="Only zip codes of five digits are currently supported."
+      data-parsley-type-message="Only zip codes of 5 digits are currently supported."
+      data-parsley-length-message="Only zip codes of 5 digits are currently supported."
       autofocus />
   </form>
 </template>
@@ -40,8 +40,10 @@
 <template name="newspaperNameSearch">
   <form class="form-search" id="newspaper_name_search_form">
     <input type="text" class="search-query" name="newspapername" placeholder="Newspaper Name" tabindex="2"
-      id="newspaper_name" data-parsley-pattern="[A-Za-z0-9]+" data-parsley-maxlength="56"
-      data-parsley-pattern-message="Punctuation characters are not currently supported in newspaper names."
+      id="newspaper_name" data-parsley-pattern="^([a-zA-Z]+)([a-zA-Z0-9 -]+)([a-zA-Z0-9]+)$" data-parsley-minlength="3" data-parsley-maxlength="56"
+      data-parsley-pattern-message="Only English newspaper names are currently supported."
+      data-parsley-minlength-message="Newspaper names have to be at least 3 characters."
+      data-parsley-maxlength-message="Newspaper names cannot be longer than 56 characters."
       />
   </form>
 </template>

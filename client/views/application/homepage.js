@@ -36,6 +36,7 @@ Template.postalCodeSearch.rendered = function () {
   var postalCodeSearchForm = $('#postalcode_search_form');
   postalCodeSearchForm.parsley();
   postalCodeSearchForm.parsley('addItem', '#postal_code');
+  $('#postalcode_search_form').parsley('validate');
 };
 
 Template.postalCodeSearch.events({
@@ -56,6 +57,7 @@ Template.newspaperNameSearch.rendered = function () {
 
   newspaperNameSearchForm.parsley();
   newspaperNameSearchForm.parsley('addItem', '#newspaper_name');
+  $('#newspaper_name_search_form').parsley('validate');
 };
 
 Template.newspaperNameSearch.events({
