@@ -1,34 +1,47 @@
 <template name="homepage">
-  {{#unless searchedAndNoPapersFound}}
-    <div>1. Save a tree and stop receiving the free local paper that you never read.<br/>
-         What is your zip code?</div>
-    <form class="form-search" id="postalcode_search_form">
-      {{!-- TODO: when I added parsley.js validation it caused the appended button to go to the next line
-        Revisit once upgraded to most recent bootstrap.
-      --}}
-      <input type="text" class="search-query" name="yourpostalcode" placeholder="Zip Code"
-        id="postal_code" data-parsley-type="digits" data-parsley-length="[5, 5]"
-        data-parsley-type-message="Only zip codes of five digits are currently supported."
-        data-parsley-length-message="Only zip codes of five digits are currently supported."
-        autofocus />
-      <button type="submit" class="btn"><i class="icon-search"></i></button>
-    </form>
-    {{#if newspapersFound.count}}
-      <div>
-        {{#each newspapersFound}}
-          {{> newspaperItem}}
-        {{/each}}
-      </div>
-    {{/if}}
-  {{else}}
-    <div>2. No one in {{session 'yourPostalCode'}} has added a free newspaper yet.<br />
-         What is the name of the newspaper?
+  <div>
+    1. Save a tree and stop receiving the free local paper that you never read.<br/>
+    What is your zip code?
+  </div>
+  {{> postalCodeSearch}}
+  {{#if searchedAndNoPapersInPostalCodeFound}}
+    <div>
+      2. No one in {{session 'yourPostalCode'}} has added a free newspaper yet.<br />
+      What is the name of the newspaper?
     </div>
-    <form class="form-search">
-      <div class="input-append">
-        <input type="text" class="search-query" name="papername" placeholder="Newspaper name?">
-        <button type="submit" class="btn"><i class="icon-search"></i></button>
-      </div>
-    </form>
-  {{/unless}}
+    {{> newspaperNameSearch}}
+  {{/if}}
+  {{#if searchedAndNoNewspapersOfNameFound}}
+    <div>
+      3. Hmm... we still haven't found a match for {{session 'newspaperName'}}.<br />
+      Would you add it to help your neighbors out?
+    </div>
+    {{> newspaperAdd}}
+  {{/if}}
+  {{#if newspapersFound.count}}
+    <div>
+      {{#each newspapersFound}}
+      {{> newspaperItem}}
+      {{/each}}
+    </div>
+  {{/if}}
+</template>
+
+<template name="postalCodeSearch">
+  <form class="form-search" id="postalcode_search_form">
+    <input type="text" class="search-query" name="yourpostalcode" placeholder="Zip Code" tabindex="1"
+      id="postal_code" data-parsley-type="digits" data-parsley-length="[5, 5]"
+      data-parsley-type-message="Only zip codes of five digits are currently supported."
+      data-parsley-length-message="Only zip codes of five digits are currently supported."
+      autofocus />
+  </form>
+</template>
+
+<template name="newspaperNameSearch">
+  <form class="form-search" id="newspaper_name_search_form">
+    <input type="text" class="search-query" name="newspapername" placeholder="Newspaper Name" tabindex="2"
+      id="newspaper_name" data-parsley-pattern="[A-Za-z0-9]+" data-parsley-maxlength="56"
+      data-parsley-pattern-message="Punctuation characters are not currently supported in newspaper names."
+      />
+  </form>
 </template>

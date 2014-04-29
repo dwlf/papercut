@@ -23,3 +23,8 @@ Template.newspaperAdd.events({
     });
   }
 });
+
+Template.newspaperAdd.rendered = function () {
+  // If we are rendering this template then it should be in focus.
+  $('#newspaper_email').focus();
+};
