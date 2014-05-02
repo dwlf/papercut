@@ -4,6 +4,9 @@ Session.setDefault('noNewspapersInPostalCodeFound', null);
 Session.setDefault('noNewspapersOfNameFound', null);
 
 Template.homepage.helpers({
+  searchedAndNoPapersInPostalCodeFound: function () { return Session.get('noNewspapersInPostalCodeFound'); },
+  searchedAndNoNewspapersOfNameFound: function () { return Session.get('noNewspapersOfNameFound'); },
+
   newspapersFound: function () {
     postalCode = Session.get('yourPostalCode'),
     newspaperName = Session.get('newspaperName'),
@@ -22,14 +25,9 @@ Template.homepage.helpers({
       } else {
         Session.set('noNewspapersOfNameFound', false);
       }
-    } else {
-      Session.set('noNewspapersInPostalCodeFound', null);
-      Session.set('noNewspapersOfNameFound', null);
     }
     return cursor;
-  },
-  searchedAndNoPapersInPostalCodeFound: function () { return Session.get('noNewspapersInPostalCodeFound'); },
-  searchedAndNoNewspapersOfNameFound: function () { return Session.get('noNewspapersOfNameFound'); }
+  }
 });
 
 Template.postalCodeSearch.rendered = function () {
@@ -42,9 +40,16 @@ Template.postalCodeSearch.rendered = function () {
 Template.postalCodeSearch.events({
   'submit form': function (event) {
     event.preventDefault();
+
+    // Reset the session variables in case user comes back to search again
+    Session.set('noNewspapersInPostalCodeFound', false);
+    Session.set('newspaperName', '');
+    Session.set('noNewspapersOfNameFound', false);
+
     if( $('#postalcode_search_form').parsley('validate').validationResult ) {
       Session.set('yourPostalCode', $(event.target).find('[name=yourpostalcode]').val());
     }
+    console.log('done');
   }
 });
 
