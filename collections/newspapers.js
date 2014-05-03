@@ -1,4 +1,71 @@
-Newspapers = new Meteor.Collection('newspapers');
+PostCodeSchema = new SimpleSchema({
+  PostalCode: {
+    type: String,
+    regEx: /^[0-9]{5}$/
+  }
+});
+
+Newspapers = new Meteor.Collection('newspapers', {
+  schema: new SimpleSchema({
+    name: {
+      label: 'Newspaper Name'
+    , type: String
+    , min: 3
+    , max: 56
+    },
+    postalCodesServed: {
+      type: [PostCodeSchema]
+    , minCount: 1
+    },
+    url: {
+      type: String
+    , label: 'URL'
+    , regEx: SchemaRegEx.Url
+    , optional: true
+    },
+    contactPhone: {
+      label: 'Phone'
+    , type: String
+    , min: 9
+    , max: 20
+    , optional: true
+    },
+    contactEmail: {
+      type: String
+    , label: 'Email'
+    , regEx: SchemaRegEx.Email
+    , optional: true
+    },
+    street: {
+      type: String
+    , max: 100
+    , optional: true
+    },
+    city: {
+      type: String
+    , max: 50
+    , optional: true
+    },
+    province: {
+      type: String
+    , min: 2
+    , max: 2
+    , optional: true
+    },
+    postalCode: {
+      type: PostCodeSchema
+    , optional: true
+    },
+    modifiedBy: {
+      type: [String]
+    },
+    modifiedAt: {
+      type: [Date]
+    , minCount: 1
+    }
+  })
+});
+
 // Although postalCodesServed is an array, for now I'm using name+postcode as ID
 // for the newspaper.
 
@@ -21,7 +88,7 @@ Meteor.methods({
     if (!user) {
       throw new Meteor.Error(1, "Please log in to add a newspaper.");
     }
-    if (!newspaperAttributes.herPostalCode) {
+    if (!newspaperAttributes.yourPostalCode) {
       throw new Meteor.Error(2, "Where did you say you lived again?");
     }
     if (!newspaperAttributes.name) {
@@ -34,15 +101,16 @@ Meteor.methods({
     }
 
     newspaper = _.extend(_.pick(newspaperAttributes, 'name', 'url', 'contactPhone', 'contactEmail',
-                                    'streetAddress', 'city', 'province', 'postalCode'), {
+                                    'street', 'city', 'province', 'postalCode'), {
       postalCodesServed: newspaperAttributes.yourPostalCode,
       modifiedBy: user._id,
-      createDate: new Date().getTime(),
-      lastModifiedDate: new Date().getTime()
+      modifiedAt: [ new Date().getTime() ]
     });
 
-    var newspaperId = Newspapers.insert(newspaper);
-    return newspaperId;
+    Newspapers.insert(newspaper, function (error, result) {
+      console.log(Newspapers.simpleSchema().namedContext().invalidKeys());
+      return result;
+    });
   },
 
   editNewspaper: function (newspaperId, newspaperAttributes) {
