@@ -13,10 +13,6 @@ Newspapers = new Meteor.Collection('newspapers', {
     , min: 3
     , max: 56
     },
-    postalCodesServed: {
-      type: [PostCodeSchema]
-    , minCount: 1
-    },
     url: {
       type: String
     , label: 'URL'
@@ -62,6 +58,23 @@ Newspapers = new Meteor.Collection('newspapers', {
     modifiedAt: {
       type: [Date]
     , minCount: 1
+    }
+  })
+});
+
+NewspaperCut = new Meteor.Collection('newspaperCut', {
+  schema: new SimpleSchema({
+    newspaperId: {
+      type: String
+    },
+    userId: {
+      type: String
+    },
+    postalCode: {
+      type: PostCodeSchema
+    },
+    Date: {
+      type: Date
     }
   })
 });
