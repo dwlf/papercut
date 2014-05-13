@@ -1,10 +1,3 @@
-PostCodeSchema = new SimpleSchema({
-  PostalCode: {
-    type: String,
-    regEx: /^[0-9]{5}$/
-  }
-});
-
 Newspapers = new Meteor.Collection('newspapers', {
   schema: new SimpleSchema({
     name: {
@@ -49,7 +42,8 @@ Newspapers = new Meteor.Collection('newspapers', {
     , optional: true
     },
     postalCode: {
-      type: PostCodeSchema
+      type: String
+    , regEx: /^[0-9]{5}$/
     , optional: true
     },
     modifiedBy: {
@@ -64,23 +58,25 @@ Newspapers = new Meteor.Collection('newspapers', {
 
 NewspaperCut = new Meteor.Collection('newspaperCut', {
   schema: new SimpleSchema({
+    postalCode: {
+      type: String
+    , regEx: /^[0-9]{5}$/
+    , index: true
+    },
     newspaperId: {
       type: String
+    , index: true
     },
     userId: {
       type: String
+    , index: true
     },
-    postalCode: {
-      type: PostCodeSchema
-    },
-    Date: {
+    date: {
       type: Date
+    , index: true
     }
   })
 });
-
-// Although postalCodesServed is an array, for now I'm using name+postcode as ID
-// for the newspaper.
 
 Newspapers.allow({
   update: function (userId, doc) {

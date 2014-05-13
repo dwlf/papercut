@@ -1,21 +1,21 @@
 var seedUserId = null;
-if (Meteor.users.find().count() === 0 ) {
-  seedUserId = Meteor.users.insert({
+if (Meteor.users.find().count() === 0) {
+  seedUserId = Accounts.createUser({
     email: 'f@oo.com',
-    password: 'bar'
+    password: '123456'
   });
 }
 
-if (Newspapers.find().count() === 0) {
+if (seedUserId && Newspapers.find().count() === 0) {
   Newspapers.insert({
-    name: 'Gotham Gazette',
-    url: 'http://en.wikipedia.org/wiki/Gotham_City#Notable_areas.2C_landmarks.2C_institutions_and_businesses',
-    contactPhone: '555-555-5555',
-    contactEmail: 'tip@example.com',
-    street: '359 Murphy Avenue',
-    city: 'Gotham',
-    province: 'GS'
-/*  , postalCode: '90909' */
+    name: 'Gotham Gazette'
+  , url: 'http://en.wikipedia.org/wiki/Gotham_City#Notable_areas.2C_landmarks.2C_institutions_and_businesses'
+  , contactPhone: '555-555-5555'
+  , contactEmail: 'tip@example.com'
+  , street: '359 Murphy Avenue'
+  , city: 'Gotham'
+  , province: 'GS'
+  , postalCode: '90909'
   , modifiedBy: [seedUserId]
   , modifiedAt: [new Date()]
   });
