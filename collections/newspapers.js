@@ -97,9 +97,6 @@ Meteor.methods({
     if (!user) {
       throw new Meteor.Error(1, "Please log in to add a newspaper.");
     }
-    if (!newspaperAttributes.yourPostalCode) {
-      throw new Meteor.Error(2, "Where did you say you lived again?");
-    }
     if (!newspaperAttributes.name) {
       throw new Meteor.Error(3, "All newspapers have a name.");
     }
@@ -112,13 +109,12 @@ Meteor.methods({
     newspaper = _.extend(_.pick(newspaperAttributes, 'name', 'url', 'contactPhone', 'contactEmail',
                                     'street', 'city', 'province', 'postalCode'), {
       postalCodesServed: newspaperAttributes.yourPostalCode,
-      modifiedBy: user._id,
-      modifiedAt: [ new Date().getTime() ]
+      modifiedBy: [ user._id ] ,
+      modifiedAt: [ new Date() ]
     });
 
-    Newspapers.insert(newspaper, function (error, result) {
+    return Newspapers.insert(newspaper, function (error, result) {
       console.log(Newspapers.simpleSchema().namedContext().invalidKeys());
-      return result;
     });
   },
 

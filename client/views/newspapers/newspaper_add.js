@@ -1,7 +1,12 @@
+Template.newspaperAdd.rendered = function () {
+  // If we are rendering this template then it should be in focus.
+  $("input[value='']:not(.filter,:checkbox,:button):input:visible:enabled:first").focus();
+};
+
 Template.newspaperAdd.events({
   'submit form': function(e) {
     e.preventDefault();
-    
+
     var newspaper = {
       name: $(e.target).find('[name=name]').val(),
       url: $(e.target).find('[name=url]').val(),
@@ -23,8 +28,3 @@ Template.newspaperAdd.events({
     });
   }
 });
-
-Template.newspaperAdd.rendered = function () {
-  // If we are rendering this template then it should be in focus.
-  $('#newspaper_email').focus();
-};
