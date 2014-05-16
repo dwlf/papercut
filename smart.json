@@ -1,9 +1,11 @@
 {
   "packages": {
+    "bootstrap-3": {},
+    "accounts-ui-bootstrap-3": {},
     "iron-router": {},
     "spin": {},
-    "accounts-ui-bootstrap-dropdown": {},
     "collection2": {},
-    "autoform": {}
+    "autoform": {},
+    "parsleyjs-v2": {}
   }
 }

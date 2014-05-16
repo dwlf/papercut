@@ -8,8 +8,8 @@ service-configuration
 iron-router
 spin
 accounts-password
-accounts-ui-bootstrap-dropdown
-bootstrap
-parsleyjs-v2
 collection2
 autoform
+bootstrap-3
+accounts-ui-bootstrap-3
+parsleyjs-v2

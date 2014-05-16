@@ -1,8 +1,10 @@
+/bootstrap-3
+/accounts-ui-bootstrap-3
 /iron-router
-/spin
 /blaze-layout
-/accounts-ui-bootstrap-dropdown
+/spin
 /collection2
 /simple-schema
 /autoform
 /moment
+/parsleyjs-v2

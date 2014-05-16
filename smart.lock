@@ -2,13 +2,25 @@
   "meteor": {},
   "dependencies": {
     "basePackages": {
+      "bootstrap-3": {},
+      "accounts-ui-bootstrap-3": {},
       "iron-router": {},
       "spin": {},
-      "accounts-ui-bootstrap-dropdown": {},
       "collection2": {},
-      "autoform": {}
+      "autoform": {},
+      "parsleyjs-v2": {}
     },
     "packages": {
+      "bootstrap-3": {
+        "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
+        "tag": "v3.1.1-1",
+        "commit": "63dd38968828bb8963636df93e9a1c45e2dfe67e"
+      },
+      "accounts-ui-bootstrap-3": {
+        "git": "https://github.com/mangasocial/meteor-accounts-ui-bootstrap-3.git",
+        "tag": "v0.3.0-1",
+        "commit": "93ffa5d0e325dc7026de89f6d90c178fa04bdd3a"
+      },
       "iron-router": {
         "git": "https://github.com/EventedMind/iron-router.git",
         "tag": "v0.7.1",
@@ -19,11 +31,6 @@
         "tag": "v0.2.2",
         "commit": "3f655f0016228e4195acc784c45d3e3a247dc39f"
       },
-      "accounts-ui-bootstrap-dropdown": {
-        "git": "https://github.com/erobit/meteor-accounts-ui-bootstrap-dropdown.git",
-        "tag": "v0.8.3",
-        "commit": "a7af8a52e4e74db020a69b158a8f992797b8b0b0"
-      },
       "collection2": {
         "git": "https://github.com/aldeed/meteor-collection2.git",
         "tag": "v0.3.11",
@@ -33,6 +40,11 @@
         "git": "https://github.com/aldeed/meteor-autoform.git",
         "tag": "v0.8.1",
         "commit": "385051a5e4bbea3b2a54965800f5f530987ef432"
+      },
+      "parsleyjs-v2": {
+        "git": "https://github.com/Sewdn/meteor-parsleyjsv2.git",
+        "tag": "v0.1.0",
+        "commit": "8f3c6e34f2666eabe54f871f73f24a2b5a4580b0"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",
